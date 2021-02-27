@@ -110,8 +110,7 @@ void key_scan(void)
       Serial.println(" ms");
       delay(100);
     }
-    if (timecount >= 30) { //长按大于30*100ms=3s  实测4s左右，产品说明是5s，可以满足
-      //printf("123\r\n");
+    if (timecount >= 30) {
       Serial.println("Wifi init successful!");
       init_flag = 0;
       switch (ap_ez_change) {
@@ -126,10 +125,10 @@ void key_scan(void)
       }
       ap_ez_change = !ap_ez_change;
     }
-    else { //短按，继电器反转
-      digitalWrite(relay, !digitalRead(relay));//继电器状态反转
+    else { 
+      digitalWrite(relay, !digitalRead(relay));
       Serial.println("relay control successful!");
-      mcu_dp_bool_update(DPID_SWITCH, digitalRead(relay)); //BOOL型数据上报;
+      mcu_dp_bool_update(DPID_SWITCH, digitalRead(relay));
     }
   }
 }
